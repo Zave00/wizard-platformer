@@ -1,0 +1,40 @@
+[gd_scene format=3 uid="uid://blmbvkbmd6a7l"]
+
+[ext_resource type="Script" uid="uid://dxp7aqtx037vc" path="res://Scenes/Levels/world.gd" id="1_434w7"]
+[ext_resource type="Texture2D" uid="uid://xvkd4wxkjotn" path="res://icon.svg" id="2_q3jv7"]
+[ext_resource type="PackedScene" uid="uid://cty64krybply" path="res://Scenes/Entities/player.tscn" id="3_03d5g"]
+[ext_resource type="PackedScene" uid="uid://6do2o8bc036x" path="res://Scenes/Collectables/air_step.tscn" id="4_vegga"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_8ffim"]
+size = Vector2(605, 265)
+
+[node name="World" type="Node2D" unique_id=2010602728]
+script = ExtResource("1_434w7")
+
+[node name="TestArea" type="StaticBody2D" parent="." unique_id=373715043]
+collision_layer = 4
+
+[node name="Sprite2D" type="Sprite2D" parent="TestArea" unique_id=747902711]
+position = Vector2(306.5, 132)
+scale = Vector2(4.7265625, 2.078125)
+texture = ExtResource("2_q3jv7")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TestArea" unique_id=1655136150]
+position = Vector2(306.5, 131.5)
+shape = SubResource("RectangleShape2D_8ffim")
+
+[node name="Player" parent="." unique_id=1893599386 instance=ExtResource("3_03d5g")]
+z_index = 1
+z_as_relative = false
+position = Vector2(124, -24)
+
+[node name="Camera2D" type="Camera2D" parent="Player" unique_id=637406272]
+zoom = Vector2(2, 2)
+process_callback = 0
+position_smoothing_enabled = true
+
+[node name="AirStep" parent="." unique_id=56925985 instance=ExtResource("4_vegga")]
+z_as_relative = false
+position = Vector2(225, -69)
+
+[connection signal="body_entered" from="AirStep" to="." method="_on_air_step_body_entered"]

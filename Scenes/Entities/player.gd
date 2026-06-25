@@ -4,7 +4,7 @@ extends CharacterBody2D
 @export var gravity: int = 2000
 @export var move_speed: int = 300
 
-var has_air_step: bool = true
+var has_air_step: bool = false
 var jump_count: int = 0
 var direction: float
 
@@ -31,7 +31,6 @@ func get_input():
 			if is_on_floor():
 				velocity.y -= jump_force
 		
-	
 
 func _physics_process(delta: float) -> void:
 	get_input()
