@@ -4,6 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://xvkd4wxkjotn" path="res://icon.svg" id="2_q3jv7"]
 [ext_resource type="PackedScene" uid="uid://cty64krybply" path="res://Scenes/Entities/player.tscn" id="3_03d5g"]
 [ext_resource type="PackedScene" uid="uid://6do2o8bc036x" path="res://Scenes/Collectables/air_step.tscn" id="4_vegga"]
+[ext_resource type="PackedScene" uid="uid://dqssswofrm53e" path="res://Scenes/Collectables/combustion.tscn" id="5_q3jv7"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_8ffim"]
 size = Vector2(605, 265)
@@ -36,5 +37,8 @@ position_smoothing_enabled = true
 [node name="AirStep" parent="." unique_id=56925985 instance=ExtResource("4_vegga")]
 z_as_relative = false
 position = Vector2(225, -69)
+
+[node name="Combustion" parent="." unique_id=1097252879 instance=ExtResource("5_q3jv7")]
+position = Vector2(310, -17)
 
 [connection signal="body_entered" from="AirStep" to="." method="_on_air_step_body_entered"]
