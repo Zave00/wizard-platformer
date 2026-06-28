@@ -1,11 +1,12 @@
 extends CharacterBody2D
 
 @export var jump_force: int = 200
-@export var gravity: int = 750
-@export var move_speed: int = 100
-@export var dashing_speed: int = 400
+@export var gravity: int = 600
+@export var move_speed: int = 50
+@export var dashing_speed: int = 200
 
 var has_air_step: bool = false
+var is_air_stepping: bool = false
 var jump_count: int = 0
 var direction: Vector2
 var has_combustion: bool = false
@@ -16,7 +17,9 @@ var has_dashed: bool = false
 
 func _ready() -> void:
 	$DashLength.timeout.connect(stop_dash)
-
+	$DoubleJumpTime.timeout.connect(stop_air_step)
+	
+ 
 func apply_gravity(delta: float) -> void:
 	velocity.y += gravity * delta
 	
@@ -30,10 +33,14 @@ func get_input():
 					velocity.y -= jump_force
 					jump_count = 1
 				else:
+					is_air_stepping = true
+					$DoubleJumpTime.start()
 					velocity.y = 0
 					velocity.y -= jump_force
 					jump_count = 2
 			elif jump_count == 1:
+				is_air_stepping = true
+				$DoubleJumpTime.start()
 				velocity.y = 0
 				velocity.y -= jump_force
 				jump_count = 2
@@ -60,18 +67,18 @@ func animations() -> void:
 			$Animations.play("walk")
 		else:
 			$Animations.play("idle")
-	elif velocity.y < 0:
-		$Animations.queue("jump")
+	elif velocity.y < 0  and not is_dashing and not is_air_stepping:
+		$Animations.play("jump")
 		$Animations.queue("in air (up)")
-	elif velocity.y > 0:
+	elif velocity.y > 0 and not is_dashing and not is_air_stepping:
 		$Animations.play("fall start")
 		$Animations.queue("falling")
-	
+		
+	if is_air_stepping:
+		$Animations.play("air step")
 	if is_dashing:
 		$Animations.play("combustion")
-	if not is_on_floor() and has_air_step:
-		if Input.is_action_just_pressed("jump"):
-			$Animations.play("air step")
+
 	
 	
 func _physics_process(delta: float) -> void:
@@ -102,3 +109,6 @@ func _physics_process(delta: float) -> void:
 func stop_dash() -> void:
 	is_dashing = false
 	has_dashed = true
+
+func stop_air_step() -> void:
+	is_air_stepping = false

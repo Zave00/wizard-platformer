@@ -23,8 +23,7 @@ tracks/0/keys = {
 
 [sub_resource type="Animation" id="Animation_bbr4a"]
 resource_name = "air step"
-length = 0.8
-loop_mode = 1
+length = 0.3
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -32,7 +31,7 @@ tracks/0/path = NodePath("Sprite:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.2, 0.4, 0.6),
+"times": PackedFloat32Array(0, 0.075, 0.15, 0.225),
 "transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 1,
 "values": [78, 79, 80, 81]
@@ -171,10 +170,7 @@ _data = {
 [node name="Player" type="CharacterBody2D" unique_id=616650692]
 collision_mask = 14
 script = ExtResource("1_nqm6o")
-jump_force = 150
-gravity = 600
-move_speed = 50
-dashing_speed = 200
+gravity = 750
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1398483834]
 position = Vector2(-2.9802322e-08, 0.7)
@@ -195,6 +191,10 @@ one_shot = true
 
 [node name="DashCooldown" type="Timer" parent="." unique_id=1772606111]
 wait_time = 0.4
+one_shot = true
+
+[node name="DoubleJumpTime" type="Timer" parent="." unique_id=609527403]
+wait_time = 0.3
 one_shot = true
 
 [node name="Animations" type="AnimationPlayer" parent="." unique_id=268039149]

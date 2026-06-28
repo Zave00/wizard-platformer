@@ -33,7 +33,7 @@ z_as_relative = false
 position = Vector2(394, -6)
 
 [node name="Camera2D" type="Camera2D" parent="Player" unique_id=637406272]
-zoom = Vector2(10, 10)
+zoom = Vector2(6, 6)
 process_callback = 0
 position_smoothing_enabled = true
 position_smoothing_speed = 15.0
