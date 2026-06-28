@@ -1,12 +1,17 @@
 [gd_scene format=3 uid="uid://6do2o8bc036x"]
 
+[ext_resource type="Texture2D" uid="uid://xvkd4wxkjotn" path="res://icon.svg" id="1_mylh8"]
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_br61g"]
-size = Vector2(16.023811, 15.891304)
+size = Vector2(4, 4)
 
 [node name="AirStep" type="Area2D" unique_id=56925985]
 collision_layer = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1815482677]
-position = Vector2(-0.01190567, 0.054347992)
 shape = SubResource("RectangleShape2D_br61g")
 debug_color = Color(0.98870105, 0.99761647, 1, 0.41960785)
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1986892170]
+scale = Vector2(0.05, 0.05)
+texture = ExtResource("1_mylh8")

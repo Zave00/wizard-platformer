@@ -1,9 +1,9 @@
 extends CharacterBody2D
 
-@export var jump_force: int = 500
-@export var gravity: int = 2000
-@export var move_speed: int = 300
-@export var dashing_speed: int
+@export var jump_force: int = 200
+@export var gravity: int = 750
+@export var move_speed: int = 100
+@export var dashing_speed: int = 400
 
 var has_air_step: bool = false
 var jump_count: int = 0
@@ -48,14 +48,43 @@ func get_input():
 			$DashCooldown.start()
 			jump_count = 1
 		 
-		
+
+func animations() -> void:
+	if direction.x < 0:
+		$Sprite.flip_h = true
+	elif direction.x > 0:
+		$Sprite.flip_h = false
+	
+	if velocity.y == 0 and is_on_floor():
+		if direction.x != 0:
+			$Animations.play("walk")
+		else:
+			$Animations.play("idle")
+	elif velocity.y < 0:
+		$Animations.queue("jump")
+		$Animations.queue("in air (up)")
+	elif velocity.y > 0:
+		$Animations.play("fall start")
+		$Animations.queue("falling")
+	
+	if is_dashing:
+		$Animations.play("combustion")
+	if not is_on_floor() and has_air_step:
+		if Input.is_action_just_pressed("jump"):
+			$Animations.play("air step")
+	
+	
 func _physics_process(delta: float) -> void:
 	get_input()
+	animations()
+	# dash logic
 	if direction:
 		dash_direction = direction;
+		
 	if is_dashing:
 		if dash_direction == Vector2.UP or dash_direction == Vector2.DOWN:
-			velocity = dash_direction * dashing_speed / 2
+			velocity = dash_direction * dashing_speed / 1.5
+			apply_gravity(delta)
 		elif dash_direction.y == 0:
 			velocity = dash_direction * dashing_speed
 		else:
@@ -66,6 +95,7 @@ func _physics_process(delta: float) -> void:
 	if is_on_floor():
 		jump_count = 0
 		has_dashed = false
+		
 	move_and_slide()
 
 

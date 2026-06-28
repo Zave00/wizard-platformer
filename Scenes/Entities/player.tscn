@@ -1,30 +1,202 @@
 [gd_scene format=3 uid="uid://cty64krybply"]
 
-[ext_resource type="Script" uid="uid://bnrh17j26mk26" path="res://Scenes/Entities/player.gd" id="1_nqm6o"]
-[ext_resource type="Texture2D" uid="uid://xvkd4wxkjotn" path="res://icon.svg" id="2_qbyki"]
+[ext_resource type="Script" uid="uid://bnrh17j26mk26" path="res://scenes/Entities/player.gd" id="1_nqm6o"]
+[ext_resource type="Texture2D" uid="uid://d1h24x14lnnt5" path="res://assets/sprites/wizard_spritesheet.png" id="2_r47wa"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_yu1b0"]
-size = Vector2(128, 128)
+size = Vector2(26.133335, 17.066668)
 
-[node name="Player" type="CharacterBody2D" unique_id=1893599386]
+[sub_resource type="Animation" id="Animation_r47wa"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [1]
+}
+
+[sub_resource type="Animation" id="Animation_bbr4a"]
+resource_name = "air step"
+length = 0.8
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [78, 79, 80, 81]
+}
+
+[sub_resource type="Animation" id="Animation_3wtrq"]
+resource_name = "combustion"
+length = 0.4
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [84, 85, 86, 84]
+}
+
+[sub_resource type="Animation" id="Animation_4yslr"]
+resource_name = "fall start"
+length = 0.4
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [24, 25, 26, 27]
+}
+
+[sub_resource type="Animation" id="Animation_5t7vh"]
+resource_name = "falling"
+length = 0.4
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [30, 31, 32, 33]
+}
+
+[sub_resource type="Animation" id="Animation_jqi8p"]
+resource_name = "idle"
+length = 0.4
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3]
+}
+
+[sub_resource type="Animation" id="Animation_ltljm"]
+resource_name = "in air (up)"
+length = 0.4
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [18, 19, 20, 21]
+}
+
+[sub_resource type="Animation" id="Animation_kk10u"]
+resource_name = "jump"
+length = 0.4
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [12, 13, 14, 15]
+}
+
+[sub_resource type="Animation" id="Animation_chgf7"]
+resource_name = "walk"
+length = 0.6
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [6, 7, 8, 9, 10, 11]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_chgf7"]
+_data = {
+&"RESET": SubResource("Animation_r47wa"),
+&"air step": SubResource("Animation_bbr4a"),
+&"combustion": SubResource("Animation_3wtrq"),
+&"fall start": SubResource("Animation_4yslr"),
+&"falling": SubResource("Animation_5t7vh"),
+&"idle": SubResource("Animation_jqi8p"),
+&"in air (up)": SubResource("Animation_ltljm"),
+&"jump": SubResource("Animation_kk10u"),
+&"walk": SubResource("Animation_chgf7")
+}
+
+[node name="Player" type="CharacterBody2D" unique_id=616650692]
 collision_mask = 14
 script = ExtResource("1_nqm6o")
-dashing_speed = 1000
-
-[node name="Sprite2D" type="Sprite2D" parent="." unique_id=256087673]
-position = Vector2(-3.8146973e-06, -1.0000038)
-scale = Vector2(0.234375, 0.234375)
-texture = ExtResource("2_qbyki")
+jump_force = 150
+gravity = 600
+move_speed = 50
+dashing_speed = 200
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1398483834]
-position = Vector2(0, -0.9999995)
+position = Vector2(-2.9802322e-08, 0.7)
+rotation = 1.5707964
 scale = Vector2(0.234375, 0.234375)
 shape = SubResource("RectangleShape2D_yu1b0")
 
+[node name="Sprite" type="Sprite2D" parent="." unique_id=256087673]
+scale = Vector2(0.234375, 0.234375)
+texture = ExtResource("2_r47wa")
+hframes = 6
+vframes = 15
+frame = 1
+
 [node name="DashLength" type="Timer" parent="." unique_id=1979105073]
-wait_time = 0.1
+wait_time = 0.125
 one_shot = true
 
 [node name="DashCooldown" type="Timer" parent="." unique_id=1772606111]
-wait_time = 0.3
+wait_time = 0.4
 one_shot = true
+
+[node name="Animations" type="AnimationPlayer" parent="." unique_id=268039149]
+libraries/ = SubResource("AnimationLibrary_chgf7")
+autoplay = &"idle"

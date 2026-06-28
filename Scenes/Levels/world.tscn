@@ -1,13 +1,16 @@
 [gd_scene format=3 uid="uid://blmbvkbmd6a7l"]
 
-[ext_resource type="Script" uid="uid://dxp7aqtx037vc" path="res://Scenes/Levels/world.gd" id="1_434w7"]
+[ext_resource type="Script" uid="uid://dxp7aqtx037vc" path="res://scenes/Levels/world.gd" id="1_434w7"]
 [ext_resource type="Texture2D" uid="uid://xvkd4wxkjotn" path="res://icon.svg" id="2_q3jv7"]
-[ext_resource type="PackedScene" uid="uid://cty64krybply" path="res://Scenes/Entities/player.tscn" id="3_03d5g"]
-[ext_resource type="PackedScene" uid="uid://6do2o8bc036x" path="res://Scenes/Collectables/air_step.tscn" id="4_vegga"]
-[ext_resource type="PackedScene" uid="uid://dqssswofrm53e" path="res://Scenes/Collectables/combustion.tscn" id="5_q3jv7"]
+[ext_resource type="PackedScene" uid="uid://cty64krybply" path="res://scenes/Entities/player.tscn" id="3_03d5g"]
+[ext_resource type="PackedScene" uid="uid://6do2o8bc036x" path="res://scenes/Collectables/air_step.tscn" id="4_vegga"]
+[ext_resource type="PackedScene" uid="uid://dqssswofrm53e" path="res://scenes/Collectables/combustion.tscn" id="5_q3jv7"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_8ffim"]
-size = Vector2(605, 265)
+size = Vector2(1551, 286)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2ttnd"]
+size = Vector2(114, 22)
 
 [node name="World" type="Node2D" unique_id=2010602728]
 script = ExtResource("1_434w7")
@@ -16,29 +19,56 @@ script = ExtResource("1_434w7")
 collision_layer = 4
 
 [node name="Sprite2D" type="Sprite2D" parent="TestArea" unique_id=747902711]
-position = Vector2(306.5, 132)
-scale = Vector2(4.7265625, 2.078125)
+position = Vector2(779.5, 142.00002)
+scale = Vector2(12.1171875, 2.2343752)
 texture = ExtResource("2_q3jv7")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="TestArea" unique_id=1655136150]
-position = Vector2(306.5, 131.5)
+position = Vector2(779.5, 142)
 shape = SubResource("RectangleShape2D_8ffim")
 
 [node name="Player" parent="." unique_id=1893599386 instance=ExtResource("3_03d5g")]
 z_index = 1
 z_as_relative = false
-position = Vector2(124, -24)
+position = Vector2(394, -6)
 
 [node name="Camera2D" type="Camera2D" parent="Player" unique_id=637406272]
-zoom = Vector2(2, 2)
+zoom = Vector2(10, 10)
 process_callback = 0
 position_smoothing_enabled = true
+position_smoothing_speed = 15.0
 
 [node name="AirStep" parent="." unique_id=56925985 instance=ExtResource("4_vegga")]
 z_as_relative = false
-position = Vector2(225, -69)
+position = Vector2(378, -19)
 
 [node name="Combustion" parent="." unique_id=1097252879 instance=ExtResource("5_q3jv7")]
-position = Vector2(310, -17)
+position = Vector2(409, -19)
+
+[node name="TestArea3" type="StaticBody2D" parent="." unique_id=1867196525]
+position = Vector2(241, -286)
+collision_layer = 4
+
+[node name="Sprite2D" type="Sprite2D" parent="TestArea3" unique_id=930744842]
+position = Vector2(61.000008, 274)
+scale = Vector2(0.8906251, 0.17187513)
+texture = ExtResource("2_q3jv7")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TestArea3" unique_id=1748852940]
+position = Vector2(61, 274)
+shape = SubResource("RectangleShape2D_2ttnd")
+
+[node name="TestArea4" type="StaticBody2D" parent="." unique_id=805393058]
+position = Vector2(439, -286)
+collision_layer = 4
+
+[node name="Sprite2D" type="Sprite2D" parent="TestArea4" unique_id=1303688593]
+position = Vector2(61.000008, 274)
+scale = Vector2(0.8906251, 0.17187513)
+texture = ExtResource("2_q3jv7")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TestArea4" unique_id=418436341]
+position = Vector2(61, 274)
+shape = SubResource("RectangleShape2D_2ttnd")
 
 [connection signal="body_entered" from="AirStep" to="." method="_on_air_step_body_entered"]

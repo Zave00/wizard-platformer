@@ -1,9 +1,16 @@
 [gd_scene format=3 uid="uid://dqssswofrm53e"]
 
+[ext_resource type="Texture2D" uid="uid://xvkd4wxkjotn" path="res://icon.svg" id="1_jx2cp"]
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_a65nk"]
+size = Vector2(4, 4)
 
 [node name="Combustion" type="Area2D" unique_id=1097252879]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=887945526]
 shape = SubResource("RectangleShape2D_a65nk")
 debug_color = Color(0.9737684, 0, 0.43501937, 0.41960785)
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=124863593]
+scale = Vector2(0.05, 0.05)
+texture = ExtResource("1_jx2cp")
